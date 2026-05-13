@@ -139,6 +139,146 @@
         transition:0.3s;
         margin-top:10px;
     }
+/* commit1 */
+    button:hover{
+        opacity:0.9;
+        transform:translateY(-2px);
+
+    }
+
+    .filters{
+        display:grid;
+        grid-template-columns:2fr 1fr;
+        gap:24px;
+        margin-bottom:60px;
+
+    }
+    
+    .filter-box{
+        padding:28px
+
+    }
+    
+    .stats{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:30px;
+        margin-bottom:70px;
+
+    }
+
+    .stat{
+        padding:40px;
+
+    }
+
+    .stat h2{
+        font-size:3.5rem;
+        font-weight:600;
+        margin-bottom:10px;
+
+    }
+
+    .stat p{
+        color:var(--muted);
+        font-size:0.95rem;
+
+    }
+
+    .task-list{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(380px,1fr));
+        gap:35px;
+
+    }
+
+    .task{
+        padding:38px;
+        transition:0.3s;        
+
+    }
+
+    .task:hover{
+        transform:translateY(-4px);
+
+    }
+
+    .task.completed{
+        opacity:0.5;
+
+    }
+
+    .priority{
+        display:inline-block;
+        font-size:0.8rem;
+        padding:8px 14px;
+        border-radius:999px;
+        margin-bottom:25px;
+        border:1px solid var(--border);
+        color:var(--muted);
+        text-transform:uppercase;
+        letter-spacing:1px;
+
+    }
+
+    .task h3{
+        font-size:1.8rem;
+        font-weight:600;
+        margin-bottom:18px;
+        letter-spacing:-1px;
+
+    }
+
+    .task p{
+        color:var(--muted);
+        margin-bottom:30px;
+        font-size:1rem;
+
+    }
+
+    .task small{
+        display:block;
+        color:var(--muted);
+        margin-top:10px;
+        font-size:0.9rem;
+
+    }
+
+    .actions{
+        display:flex;
+        gap:14px;
+        margin-top:35px;
+
+    }
+
+    .actions button{
+        flex:1;
+        margin-top:0;
+
+    }
+
+    .secondary{
+        background:#ededed;
+        color:black;
+
+    }
+
+    @media(max-width:900px){
+        body{
+            padding:40px 20px;
+        }
+
+        .header{
+            flex-direction:column;
+            gap:30px;
+
+        }
+
+
+    }
+
+
+
 
 
 </style>
