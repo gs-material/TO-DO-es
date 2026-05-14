@@ -298,7 +298,90 @@
 </style>
 </head>
 
+
 <body>
+/* commit3 */
+    <div class="app">
+        <div class="header">
+            <div class="title">
+                <h1>ToDO'ing</h1>
+               <p>Clean task management.</p>
+            
+                </div>
+    <div class="time"id="liveTime"></div>
+    </div>
+
+    <div class="task-form card">
+        <input
+            type="text"
+            id="taskTitle"
+            placeholder="title task"
+        >
+    
+        <textarea id="taskDescription" placeholder="Description"></textarea>
+
+        <div class="row">
+            <input type="date" id="taskDate" >
+            <select id="taskPriority">
+                <option value="low"> Low Priority </option>
+
+                <option value="medium">Medium Priority</option>
+
+                <option value="high">High Priority</option>
+
+            </select>
+
+        </div>
+
+        <button id="askTaskBtn">Add Task</button>
+
+    </div>
+
+    <div class="filters">
+        <div class="filter-box card">
+            
+            <input type="text" id="searchInput" placeholder="Search tasks">
+
+        </div>
+
+        <div class="filter-box-card">
+            <select id="filterPriority">
+                <option value="all">All Priorities</option>
+                <option value="high">High</option>
+                <option value="middle">Middle</option>
+                <option value="low">Low</option>
+
+            </select>
+
+        </div>
+    </div>
+    
+    <div class="stats">
+        <div class="stat card">
+            <h2 id="totalTasks">0</h2>
+            <p>Total Tasks</p>
+
+        </div>
+
+        <div class="stat card">
+
+            <h2 id="completedTasks">0</h2>
+            <p>Completed</p>
+        </div>
+
+        <div class="stat card">
+            <h2 id="pendingTasks">0</h2>
+            <p>Pending</p>
+
+        </div>
+    </div>
+
+    <div class="task-list" id="taskList"></div>
+
+    </div>
+
+    <script>
+    </script>
 
 
 </body>
