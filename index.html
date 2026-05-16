@@ -380,7 +380,70 @@
 
     </div>
 
+/* commit4 */
     <script>
+        const taskList = document.getElementById("taskList");
+        const taskTitle = document.getElementById("taskTitle");
+        const taskDescription = document.getElementById("taskDescription");
+        const taskDate = document.getElementById("taskDate");
+        const taskPriority = document.getElementById("taskPriority");
+        const addTaskBtn = document.getElementById("addTaskBtn");
+        const searchInput = document.getElementById("searchInput");
+        const filterPrioity = document.getElementById("filterPriority");
+    
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+        function saveTasks(){
+            localStorage.setItem("tasks",JSON.stringify(tasks));
+
+        }
+
+        function updateClock(){
+            const now = new Date();
+            
+            document.getElementById("liveTime").innerText = now.toLocaleDateString();
+        
+        }
+
+        setInterval(updateClock,1000);
+        updateClock();
+
+        function updateStats(){
+            const total = tasks.length;
+
+            const completed = tasks.filter(task => task.completed).length;
+
+            const pending = total - completed;
+
+            document.getElementById("totalTasks").innerText = total;
+
+            document.getElementById("completedTasks").innerText = completed;
+
+            document.getElementById("pendingTasks").innerText = pending;
+
+        }
+
+        function renderTasks(){
+            taskList.innerHTML ="";
+
+            const filtered = task.filter(task => {
+
+                const searchMatch = 
+                    task.title
+                    .toLowerCase()
+                    .includes(
+                        searchInput.value
+                        .toLowerCase()
+                    );
+
+
+            });
+
+
+
+
+
+        }
     </script>
 
 
