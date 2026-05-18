@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial scale=1.0"
+    <meta name="viewport" content="width=device-width,initial scale=1.0">
 
-    <title>TO-DO'ing</title>
+    <title>TO-DOes</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -300,11 +300,11 @@
 
 
 <body>
-/* commit3 */
+<!--Commit3-->
     <div class="app">
         <div class="header">
             <div class="title">
-                <h1>ToDO'ing</h1>
+                <h1>ToDOes</h1>
                <p>Clean task management.</p>
             
                 </div>
@@ -333,7 +333,7 @@
 
         </div>
 
-        <button id="askTaskBtn">Add Task</button>
+        <button id="addTaskBtn">Add Task</button>
 
     </div>
 
@@ -344,11 +344,11 @@
 
         </div>
 
-        <div class="filter-box-card">
+        <div class="filter-box card">
             <select id="filterPriority">
                 <option value="all">All Priorities</option>
                 <option value="high">High</option>
-                <option value="middle">Middle</option>
+                <option value="medium">Medium</option>
                 <option value="low">Low</option>
 
             </select>
@@ -380,7 +380,7 @@
 
     </div>
 
-/* commit4 */
+<!--Commit4-->
     <script>
         const taskList = document.getElementById("taskList");
         const taskTitle = document.getElementById("taskTitle");
@@ -389,7 +389,7 @@
         const taskPriority = document.getElementById("taskPriority");
         const addTaskBtn = document.getElementById("addTaskBtn");
         const searchInput = document.getElementById("searchInput");
-        const filterPrioity = document.getElementById("filterPriority");
+        const filterPriority = document.getElementById("filterPriority");
     
         let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
@@ -426,7 +426,7 @@
         function renderTasks(){
             taskList.innerHTML ="";
 
-            const filtered = task.filter(task => {
+            const filtered = tasks.filter(task => {
 
                 const searchMatch = 
                     task.title
@@ -435,15 +435,149 @@
                         searchInput.value
                         .toLowerCase()
                     );
+                
+// commit5
+                const priorityMatch = filterPriority.value === "all" ||
+                    task.priority === filterPriority.value;
 
+                return (searchMatch && priorityMatch);
 
             });
 
+        filtered
+        .reverse()
+        .forEach((task,index)=>{
+            const div = 
+                document.createElement("div");
 
+            div.className = 
+                `task card ${task.completed ? "completed":""}`;
 
+            div.innerHTML = `
+                <div class="priority">
+                    ${task.priority}
+                </div>
 
+                <h3>
+                    ${task.title}
+                </h3>
+
+                <p>
+                    ${task.description}
+                </p>
+
+                <small>
+                    Due:
+                    ${task.date || "No date"}
+                </small>
+
+                <div class="actions">
+                    <button onclick="toggleTask(${index})">
+                        ${task.completed ? "Undo": "Complete"}
+                    </button>
+
+                    <button class="secondary" onclick="deleteTask(${index})">
+                        Delete
+                    </button>
+                
+                </div>
+
+            
+
+            `;
+        taskList.appendChild(div);
+
+        });
+        updateStats();
+        }
+
+        function addTask(){
+
+            if(taskTitle.value.trim() === ""){
+                alert(
+                    "Please enter a task title."
+                );
+
+                return;
+
+            }
+
+            tasks.push({
+                title: taskTitle.value,
+
+                description: taskDescription.value,
+
+                date: taskDate.value,
+
+                priority: taskPriority.value,
+
+                completed:false
+
+            });
+
+            saveTasks();
+            renderTasks();
+            clearInputs();
 
         }
+
+        function clearInputs(){
+            taskTitle.value ="";
+
+            taskDescription.value ="";
+
+            taskDate.value ="";
+
+        }
+
+        function toggleTask(index){
+            const reversed =
+                [...tasks].reverse();
+            
+            const actualTask =
+                reversed[index];
+
+            const realIndex =
+                tasks.indexOf(actualTask);
+
+            tasks[realIndex].completed =
+                !tasks[realIndex].completed;
+
+            saveTasks();
+
+            renderTasks();
+
+        }
+
+        function deleteTask(index){
+            const reversed =
+                [...tasks].reverse();
+
+            const actualTask =
+                reversed[index];
+
+            const realIndex =
+                tasks.indexOf(actualTask);
+
+            tasks.splice(realIndex,1);
+
+            saveTasks();
+
+            renderTasks();
+
+        }
+
+        searchInput.addEventListener("input",renderTasks);
+
+        filterPriority.addEventListener("change",renderTasks);
+
+        addTaskBtn.addEventListener("click",addTask);
+
+        renderTasks();
+
+
+
+// commit6
     </script>
 
 
